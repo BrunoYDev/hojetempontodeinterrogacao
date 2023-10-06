@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 
 const MovingButton = () => {
-const [top,setTop] = useState(0);
-const [left,setLeft] = useState(0);
+const [top,setTop] = useState(522);
+const [left,setLeft] = useState(884);
 
 const handleClick = () => {
     const windowHeight = window.innerHeight;
@@ -17,7 +17,7 @@ const handleClick = () => {
   };
 
   const buttonStyle: React.CSSProperties = {
-    position: 'relative',
+    position: 'absolute',
     top: `${top}px`,
     left: `${left}px`,
   };
