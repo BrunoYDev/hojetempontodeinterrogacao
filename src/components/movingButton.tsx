@@ -1,32 +1,89 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from "react";
 
 const MovingButton = () => {
-const [top,setTop] = useState(522);
-const [left,setLeft] = useState(884);
+  let initialTop = 522;
+  let initialLeft = 890;
+  let isMobile = window.innerWidth <= 768;
+  let isLowWidth = window.innerWidth == 1366;
 
-const handleClick = () => {
+  if (isMobile) {
+    initialTop = 458;
+    initialLeft = 120;
+  } else if (isLowWidth) {
+    initialTop = 458;
+    initialLeft = 620;
+  }
+
+  const [top, setTop] = useState(initialTop);
+  const [left, setLeft] = useState(initialLeft);
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (isMobile) {
+        if (top > window.innerHeight - 50) {
+          setTop(window.innerHeight - 50);
+        }
+        if (left > window.innerWidth - 100) {
+          setLeft(window.innerWidth - 100);
+        }
+      } else if (isLowWidth) {
+        if (top > window.innerHeight - 100) {
+          setTop(window.innerHeight - 100);
+        }
+        if (left > window.innerWidth - 260) {
+          setLeft(window.innerWidth - 260);
+        }
+      } else {
+        if (top > window.innerHeight - 50) {
+          setTop(window.innerHeight - 50);
+        }
+        if (left > window.innerWidth - 100) {
+          setLeft(window.innerWidth - 100);
+        }
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, [isMobile, isLowWidth, top, left]);
+
+  const handleClick = () => {
     const windowHeight = window.innerHeight;
     const windowWidth = window.innerWidth;
 
-    // Gerar coordenadas aleatórias dentro da janela do navegador
-    const newTop = Math.random() * (windowHeight - 50); // Subtrai 50 para manter o botão visível na tela
-    const newLeft = Math.random() * (windowWidth - 100); // Subtrai 100 para manter o botão visível na tela
+    let newTop = Math.random() * (windowHeight - 50);
+    let newLeft = Math.random() * (windowWidth - 100);
+    if (isMobile) {
+      newTop = Math.min(newTop, windowHeight - 50);
+      newTop = Math.max(newTop, 0);
+      newLeft = Math.min(newLeft, windowWidth - 220);
+      newLeft = Math.max(newLeft, 0);
+    } else {
+      newLeft = Math.min(newLeft, windowWidth - 100);
+      newTop = Math.max(newTop, 0);
+    }
 
     setTop(newTop);
     setLeft(newLeft);
   };
 
   const buttonStyle: React.CSSProperties = {
-    position: 'absolute',
+    position: "absolute",
     top: `${top}px`,
     left: `${left}px`,
   };
 
-    return (
-        <button style={buttonStyle} onClick={() => handleClick()}>
-        Não
-      </button>
-    )
-}
+  return (
+    <button
+      style={buttonStyle}
+      onClick={() => handleClick()}
+    >
+      Não
+    </button>
+  );
+};
 
 export default MovingButton;
