@@ -11,7 +11,8 @@ function App() {
     "https://youtu.be/XYu__CE4u-M",
     "https://youtu.be/rew8ZFfoHks",
     "https://youtu.be/FenNwYo-miw?t=15",
-    "https://youtu.be/5uAVvo9ZU9Y"
+    "https://youtu.be/5uAVvo9ZU9Y",
+    "https://youtu.be/fK9nofPKpoc?t=64"
   ];
 
   const getRandomLink = () => {

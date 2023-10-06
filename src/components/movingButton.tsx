@@ -17,45 +17,45 @@ const MovingButton = () => {
   const [top, setTop] = useState(initialTop);
   const [left, setLeft] = useState(initialLeft);
 
-  useEffect(() => {
-    const handleResize = () => {
-      if (isMobile) {
-        if (top > window.innerHeight - 50) {
-          setTop(window.innerHeight - 50);
-        }
-        if (left > window.innerWidth - 100) {
-          setLeft(window.innerWidth - 100);
-        }
-      } else if (isLowWidth) {
-        if (top > window.innerHeight - 100) {
-          setTop(window.innerHeight - 100);
-        }
-        if (left > window.innerWidth - 260) {
-          setLeft(window.innerWidth - 260);
-        }
-      } else {
-        if (top > window.innerHeight - 50) {
-          setTop(window.innerHeight - 50);
-        }
-        if (left > window.innerWidth - 100) {
-          setLeft(window.innerWidth - 100);
-        }
-      }
-    };
+  // useEffect(() => {
+  //   const handleResize = () => {
+  //     if (isMobile) {
+  //       if (top > window.innerHeight - 50) {
+  //         setTop(window.innerHeight - 50);
+  //       }
+  //       if (left > window.innerWidth - 100) {
+  //         setLeft(window.innerWidth - 100);
+  //       }
+  //     } else if (isLowWidth) {
+  //       if (top > window.innerHeight - 100) {
+  //         setTop(window.innerHeight - 100);
+  //       }
+  //       if (left > window.innerWidth - 260) {
+  //         setLeft(window.innerWidth - 260);
+  //       }
+  //     } else {
+  //       if (top > window.innerHeight - 50) {
+  //         setTop(window.innerHeight - 50);
+  //       }
+  //       if (left > window.innerWidth - 100) {
+  //         setLeft(window.innerWidth - 100);
+  //       }
+  //     }
+  //   };
 
-    window.addEventListener("resize", handleResize);
+  //   window.addEventListener("resize", handleResize);
 
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, [isMobile, isLowWidth, top, left]);
+  //   return () => {
+  //     window.removeEventListener("resize", handleResize);
+  //   };
+  // }, [isMobile, isLowWidth, top, left]);
 
   const handleClick = () => {
     const windowHeight = window.innerHeight;
     const windowWidth = window.innerWidth;
 
     let newTop = Math.random() * (windowHeight - 50);
-    let newLeft = Math.random() * (windowWidth - 100);
+    let newLeft = Math.random() * (windowWidth - 200);
     if (isMobile) {
       newTop = Math.min(newTop, windowHeight - 50);
       newTop = Math.max(newTop, 0);
